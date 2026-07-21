@@ -1,1 +1,54 @@
+---
+layout: default
+title: Home
+---
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy-wrap">
+      <span class="eyebrow">Vulnerability Researcher</span>
+      <h1 class="hero-heading">Finding Flaws.<br>Breaking <span class="accent">Barriers.</span></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-copy">{{ site.description }}</p>
+      <div class="hero-actions">
+        {% assign latest = site.posts.first %}
+        <a class="btn btn-solid" href="{{ latest.url | relative_url }}">{% include icon.html name="file" %} LATEST BLOG POST</a>
+        <a class="btn btn-outline" href="{{ '/research/' | relative_url }}">VIEW RESEARCH {% include icon.html name="chevron" %}</a>
+      </div>
+    </div>
+    {% include hero-art.html %}
+  </div>
+</section>
 
+<div class="wrap content-grid">
+  <div>
+    <div class="section-heading">
+      <h2>{% include icon.html name="file" %} Latest Posts</h2>
+      <a class="view-all" href="{{ '/blog/' | relative_url }}">VIEW ALL POSTS {% include icon.html name="arrow" %}</a>
+    </div>
+
+    {% assign home_posts = site.posts | slice: 0, site.home_post_limit %}
+    {% for post in home_posts %}
+      <div class="post-card">
+        <div class="thumb">
+          {% if post.image %}
+            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+          {% else %}
+            {% assign post_icon = post.icon | default: "code" %}
+            {% include icon.html name=post_icon %}
+          {% endif %}
+        </div>
+        <div class="body">
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <div class="post-meta">
+            <span>{% include icon.html name="calendar" %} {{ post.date | date: "%B %-d, %Y" }}</span>
+            {% if post.categories.first %}<span class="cat">{% include icon.html name="folder" %} {{ post.categories.first }}</span>{% endif %}
+          </div>
+          <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 26 }}</p>
+          <a class="read-more" href="{{ post.url | relative_url }}">READ MORE {% include icon.html name="arrow" %}</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% include sidebar.html %}
+</div>
