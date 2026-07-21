@@ -1,67 +1,171 @@
-<div class="hero-art">
-  <div class="glow"></div>
-  <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Decorative rune circle with coiled dragon">
+```html
+<div class="hero-art" aria-hidden="true">
+  <div class="void-glow"></div>
+
+  <svg
+    viewBox="0 0 500 500"
+    xmlns="http://www.w3.org/2000/svg"
+    class="dragon-svg"
+  >
+
     <defs>
-      <radialGradient id="bgGlow" cx="55%" cy="50%" r="60%">
-        <stop offset="0%" stop-color="#2a1a3d"/>
-        <stop offset="55%" stop-color="#120a1a"/>
-        <stop offset="100%" stop-color="#0a0a0d" stop-opacity="0"/>
+
+      <radialGradient id="voidGlow">
+        <stop offset="0%" stop-color="#6d28d9" stop-opacity=".45"/>
+        <stop offset="45%" stop-color="#4c1d95" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="#09090b" stop-opacity="0"/>
       </radialGradient>
-      <linearGradient id="dragonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#3a2a4d"/>
-        <stop offset="55%" stop-color="#9b5de5"/>
-        <stop offset="100%" stop-color="#2a1a3d"/>
+
+      <linearGradient
+        id="dragonGradient"
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="100%"
+      >
+        <stop offset="0%" stop-color="#c084fc"/>
+        <stop offset="40%" stop-color="#7c3aed"/>
+        <stop offset="100%" stop-color="#2e1065"/>
       </linearGradient>
-      <symbol id="rune" viewBox="-10 -10 20 20">
-        <path d="M0 -9 V9 M-6 -5 L6 5 M-6 5 L6 -5" stroke="#a882d6" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.65"/>
-      </symbol>
+
+      <filter id="dragonGlow">
+        <feGaussianBlur
+          stdDeviation="5"
+          result="blur"
+        />
+
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+
     </defs>
 
-    <circle cx="250" cy="250" r="235" fill="url(#bgGlow)"/>
-    <circle cx="250" cy="250" r="210" fill="none" stroke="#3a2f4a" stroke-width="1.5"/>
-    <circle cx="250" cy="250" r="235" fill="none" stroke="#2a2236" stroke-width="1"/>
 
-    <!-- rune ring -->
-    <g>
-      {% assign rune_count = 16 %}
-      {% for i in (1..16) %}
-        {% assign angle = i | times: 22.5 %}
-        <use href="#rune" x="250" y="40" width="20" height="20"
-             transform="rotate({{ angle }} 250 250)"/>
-      {% endfor %}
+    <!-- Purple void -->
+
+    <circle
+      cx="250"
+      cy="250"
+      r="230"
+      fill="url(#voidGlow)"
+    />
+
+
+    <!-- Outer energy ring -->
+
+    <circle
+      cx="250"
+      cy="250"
+      r="205"
+      fill="none"
+      stroke="#6d28d9"
+      stroke-width="1"
+      opacity=".25"
+      stroke-dasharray="2 12"
+    />
+
+
+    <!-- Dragon -->
+
+    <g
+      fill="none"
+      stroke="url(#dragonGradient)"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      filter="url(#dragonGlow)"
+    >
+
+      <!-- Body -->
+
+      <path
+        d="
+          M250 245
+          C330 235 370 165 320 115
+          C280 75 220 95 210 145
+          C200 185 235 205 270 190
+          C300 178 300 145 275 130
+        "
+        stroke-width="28"
+      />
+
+
+      <!-- Lower body -->
+
+      <path
+        d="
+          M250 245
+          C255 315 205 365 145 345
+          C85 325 75 260 120 215
+        "
+        stroke-width="30"
+      />
+
+
+      <!-- Head -->
+
+      <path
+        d="
+          M125 210
+          C95 195 65 210 58 235
+          C52 258 70 275 95 272
+          C110 270 120 255 125 240
+        "
+        stroke-width="18"
+      />
+
+
+      <!-- Horn -->
+
+      <path
+        d="
+          M95 205
+          C100 180 120 165 145 165
+        "
+        stroke-width="10"
+      />
+
     </g>
 
-    <!-- coiled dragon body -->
-    <path d="M250 250
-             C 330 250 360 180 320 130
-             C 290 92 230 95 210 135
-             C 195 165 215 195 250 200
-             C 285 205 300 175 280 155"
-          fill="none" stroke="url(#dragonGrad)" stroke-width="26" stroke-linecap="round"/>
-    <path d="M250 250
-             C 250 320 190 350 140 320
-             C 100 296 95 240 130 210"
-          fill="none" stroke="url(#dragonGrad)" stroke-width="30" stroke-linecap="round"/>
 
-    <!-- head -->
-    <path d="M120 205
-             C 95 195 70 205 60 225
-             C 52 242 62 258 80 262
-             C 70 270 70 282 80 290
-             C 92 300 108 296 114 284"
-          fill="none" stroke="url(#dragonGrad)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- horn -->
-    <path d="M95 200 C 100 185 112 176 126 174" fill="none" stroke="url(#dragonGrad)" stroke-width="10" stroke-linecap="round"/>
-    <!-- eye glow -->
-    <circle cx="88" cy="228" r="4.5" fill="#e8d9ff"/>
-    <circle cx="88" cy="228" r="9" fill="#c9a3f2" opacity="0.35"/>
+    <!-- Eye -->
 
-    <!-- inner void -->
-    <circle cx="250" cy="250" r="46" fill="#0a0a0d"/>
-    <circle cx="250" cy="250" r="46" fill="none" stroke="#6d28d9" stroke-width="1" opacity="0.6"/>
+    <circle
+      cx="86"
+      cy="235"
+      r="4"
+      fill="#e9d5ff"
+    />
+
+    <circle
+      cx="86"
+      cy="235"
+      r="12"
+      fill="#a855f7"
+      opacity=".25"
+    />
+
+
+    <!-- Void -->
+
+    <circle
+      cx="250"
+      cy="245"
+      r="45"
+      fill="#050507"
+    />
+
+    <circle
+      cx="250"
+      cy="245"
+      r="46"
+      fill="none"
+      stroke="#7c3aed"
+      stroke-width="1"
+      opacity=".6"
+    />
+
   </svg>
-  <!-- To use your own artwork instead: drop an image at
-       /assets/images/hero.jpg, then uncomment the line below and
-       delete/hide the <svg> above (see README "Replacing the hero art"). -->
-  <!-- <img class="custom-image" style="display:block" src="{{ '/assets/images/hero.jpg' | relative_url }}" alt="Null Dragon hero artwork"> -->
 </div>
+```
