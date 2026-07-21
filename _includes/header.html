@@ -1,0 +1,33 @@
+<header class="site-header" id="site-header">
+  <div class="wrap">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <img class="logo" src="{{ '/assets/images/logo.svg' | relative_url }}" alt="Null Dragon logo">
+      <span>
+        <span class="brand-name">NULL DRAGON</span>
+        <span class="brand-tag">VULNERABILITY RESEARCH</span>
+      </span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>HOME</a>
+      <a href="{{ '/blog/' | relative_url }}" {% if page.url contains '/blog' %}class="active"{% endif %}>BLOG</a>
+      <a href="{{ '/research/' | relative_url }}" {% if page.url contains '/research' %}class="active"{% endif %}>RESEARCH</a>
+      <a href="{{ '/tools/' | relative_url }}" {% if page.url contains '/tools' %}class="active"{% endif %}>TOOLS</a>
+      <a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about' %}class="active"{% endif %}>ABOUT</a>
+      <a href="{{ '/contact/' | relative_url }}" {% if page.url contains '/contact' %}class="active"{% endif %}>CONTACT</a>
+    </nav>
+
+    <div class="header-icons">
+      <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener" aria-label="GitHub">
+        {% include icon.html name="github" %}
+      </a>
+      <a href="{{ site.linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn">
+        {% include icon.html name="linkedin" %}
+      </a>
+      <a href="mailto:{{ site.email }}" aria-label="Email">
+        {% include icon.html name="mail" %}
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
