@@ -1,1 +1,33 @@
-
+---
+layout: page
+title: Blog
+eyebrow: Writeups & Research Notes
+subtitle: Deep dives into exploit development, reverse engineering, and everything in between.
+permalink: /blog/
+---
+<div class="content-grid" style="padding-top:0;">
+  <div>
+    {% for post in site.posts %}
+      <div class="post-card">
+        <div class="thumb">
+          {% if post.image %}
+            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+          {% else %}
+            {% assign post_icon = post.icon | default: "code" %}
+            {% include icon.html name=post_icon %}
+          {% endif %}
+        </div>
+        <div class="body">
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <div class="post-meta">
+            <span>{% include icon.html name="calendar" %} {{ post.date | date: "%B %-d, %Y" }}</span>
+            {% if post.categories.first %}<span class="cat">{% include icon.html name="folder" %} {{ post.categories.first }}</span>{% endif %}
+          </div>
+          <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+          <a class="read-more" href="{{ post.url | relative_url }}">READ MORE {% include icon.html name="arrow" %}</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% include sidebar.html %}
+</div>
