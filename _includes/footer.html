@@ -1,0 +1,25 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-brand">
+      <img src="{{ '/assets/images/logo.svg' | relative_url }}" alt="Null Dragon logo">
+      <span>
+        <span class="name">NULL DRAGON</span><br>
+        <span class="sub">Vulnerability Research</span>
+      </span>
+    </div>
+
+    <div class="footer-meta">
+      &copy; {{ 'now' | date: "%Y" }} Null Dragon. All rights reserved.<br>
+      Built with 💜 and secured with paranoia.
+      <div style="margin-top:6px;">
+        <a href="{{ '/privacy/' | relative_url }}">Privacy Policy</a> /
+        <a href="{{ '/disclaimer/' | relative_url }}">Disclaimer</a> /
+        <a href="{{ '/sitemap.xml' | relative_url }}">Sitemap</a>
+      </div>
+    </div>
+
+    <a class="back-to-top" href="#site-header" aria-label="Back to top">
+      {% include icon.html name="chevron" %}
+    </a>
+  </div>
+</footer>
