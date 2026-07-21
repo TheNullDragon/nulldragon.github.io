@@ -1,1 +1,18 @@
-
+---
+layout: page
+title: Tools
+eyebrow: Open Source Tooling
+subtitle: Scripts and utilities built while researching, fuzzing, and reverse engineering.
+permalink: /tools/
+---
+<div class="card-grid">
+  {% for item in site.tools %}
+    <div class="tile">
+      <span class="eyebrow">{{ item.language | default: "Tool" }}</span>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.description }}</p>
+    </div>
+  {% endfor %}
+</div>
+<p style="margin-top:32px;">Add new entries by dropping a markdown file into <code>_tools/</code> — see
+<code>_tools/example-tool.md</code> for the expected front matter.</p>
